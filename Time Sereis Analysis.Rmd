@@ -1,0 +1,39 @@
+---
+title: "Time Series Analysis"
+output: html_notebook
+author: "Rishab Sarkar"
+---
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+Ref Link: https://trends.google.co.in/trends/explore?date=all&geo=IN&q=national%20anthem,national%20song
+
+
+```{r}
+# importing all the necessary libraries
+library(tsibble)
+library(tidyverse)
+library(plotly)
+```
+
+```{r}
+# CREATE THE DATAFRAME
+data <- read_csv('multiTimeline.csv', col_names = c('month', 'nationa_anthem', 'national_song'))
+data <- data_frame(data)
+head(data)
+```
+```{r}
+#CHECK FOR NULL VALUES IN THE DF
+is.null(data) 
+```
+```{r}
+# PLOT THE DATA TO HAVE A BETTER VISUAL
+# national anthem for the year 2004
+fig <- plot_ly(data[c(2:13),c(1:3)], x = ~month, y = ~nationa_anthem, type = 'scatter', mode='lines+markers')
+fig
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
